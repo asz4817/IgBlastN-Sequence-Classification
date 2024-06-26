@@ -14,8 +14,8 @@ Navigate to correct directory in terminal
 python3 human.py query path
 python3 mouse.py query path
 ```
-query = path to the input fasta file
-path = path to the IgBlast directory on your computer
+query = path to the input fasta file.
+path = path to the IgBlast directory on your computer.
 
 These codes will return a human_identities.csv or mouse_identities.csv, which you can then analyze in Excel. 
 Pull the resulting list of identities you determin in Excel to a seperate csv to use in the next Python file. 
