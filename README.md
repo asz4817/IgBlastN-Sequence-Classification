@@ -27,7 +27,7 @@ Pull the resulting list of identities you determin in Excel to a seperate csv to
   python3 splitFasta.py type_of_seq path data_file
 ```
 
-type_of_seq: The path to the CSV file containing the sequence classifications.<br/>  
+type_of_seq: The path to the CSV file containing the sequence classifications. 
 path: The working directory path.<br/>
 data_file: The relative file path to the specific fasta file (from the path var).
 
