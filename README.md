@@ -15,7 +15,7 @@ python3 human.py query path
 python3 mouse.py query path
 ```
 
-query = path to the input fasta file.
+query = path to the input fasta file.<br/>
 path = path to the IgBlast directory on your computer.
 
 These codes will return a human_identities.csv or mouse_identities.csv, which you can then analyze in Excel. 
@@ -27,8 +27,8 @@ Pull the resulting list of identities you determin in Excel to a seperate csv to
   python3 splitFasta.py type_of_seq path data_file
 ```
 
-type_of_seq: The path to the CSV file containing the sequence classifications.  
-path: The working directory path.
+type_of_seq: The path to the CSV file containing the sequence classifications.<br/>  
+path: The working directory path.<br/>
 data_file: The relative file path to the specific fasta file (from the path var).
 
 This code will return two fasta files, one with only human sequences, and one with only mouse sequences. 
