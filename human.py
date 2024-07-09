@@ -2,11 +2,9 @@ import sys
 import subprocess
 import pandas as pd
 from io import StringIO
-import warnings
-import numpy as np
 import os
 
-def blastn_get_top_hits_v(query, path="/Users/amandazhang/Downloads/igblast-master"):
+def blastn_get_top_hits_human(query, path="/Users/amandazhang/Downloads/igblast-master"):
     """
     Function that parses the hits table from igblastn (bin/igblastn). The hits table shows the top identity to human sequences
     :param query: string, file path of the input fasta file
@@ -14,6 +12,7 @@ def blastn_get_top_hits_v(query, path="/Users/amandazhang/Downloads/igblast-mast
     :return: df (dataframe of query and %identity human)
     """
     #changes the working directory to the downloaded igblast folder
+    print("Beginning Human Igblastn")
     os.chdir(path)
 
     # command to run igblastn
@@ -32,6 +31,7 @@ def blastn_get_top_hits_v(query, path="/Users/amandazhang/Downloads/igblast-mast
     
     #Go through the output and match all of the queries to the %identity
     try:
+        print("Parsing through human results")
         #hits dictionary stores the query as the key and identity as value
         hits = {}
         count = 0
@@ -45,7 +45,7 @@ def blastn_get_top_hits_v(query, path="/Users/amandazhang/Downloads/igblast-mast
             elif line.startswith("V ") and line[3].isdigit() and count == 1 :
                 hits[name] = float(line.split()[1][:-1])
                 count = 0
-                
+        print("Done parsing")
         # Convert data list into DataFrame        
         df = pd.DataFrame.from_dict(hits, orient='index', columns = ["% Identity"])
         return df
@@ -57,12 +57,17 @@ def blastn_get_top_hits_v(query, path="/Users/amandazhang/Downloads/igblast-mast
     
 
 # Calling Function
-#query = '/Users/amandazhang/Downloads/igblast-master/test.fasta'
-query = sys.argv[1]
-if len(sys.argv)>2:
-    path = sys.argv[2]
-    df = blastn_get_top_hits_v(query, path)
-else:
-    df = blastn_get_top_hits_v(query)
+def main():
+    #query = '/Users/amandazhang/Downloads/igblast-master/test.fasta'
+    query = sys.argv[1]
+    if len(sys.argv)>2:
+        path = sys.argv[2]
+        df = blastn_get_top_hits_human(query, path)
+    else:
+        df = blastn_get_top_hits_human(query)
 
-df.to_csv('human_identities.csv', index=True) 
+    df.to_csv('human_identities.csv', index=True) 
+
+
+if __name__=="__main__": 
+    main() 

@@ -1,8 +1,7 @@
-import csv
 import os
 import sys
 
-def splitFasta(type_of_seq, path, data_file):
+def splitFastaCSV(type_of_seq, path, data_file):
     '''
     Function that parses the fasta file as well as the matching csv with identities listed (human, mouse, or none - removed)
         and splits the given fasta file into two fasta files, one of all human and one of all mouse sequences. 
@@ -13,6 +12,7 @@ def splitFasta(type_of_seq, path, data_file):
     '''
     
     os.chdir(path)
+
     # parse the types of sequences csv into an ordered list
     action = []
     with open(type_of_seq) as f:
@@ -46,6 +46,50 @@ def splitFasta(type_of_seq, path, data_file):
     human.close()
     mouse.close()
 
+def splitFasta(action, path, data_file):
+    '''
+    Function that parses the fasta file as well as the matching csv with identities listed (human, mouse, or none - removed)
+        and splits the given fasta file into two fasta files, one of all human and one of all mouse sequences. 
+    :param type_of_seq: string, full file path to the csv file with the identities listed
+    :param path:  string, file path to the working directory
+    :param data_file: string, relative file path to the specific fasta file (from the path var)
+    :return: None
+    '''    
+    os.chdir(path)
+
+    #open the resulting human and mouse files
+    human = open(f"{path}/KI {data_file}", "w")
+    mouse = open(f"{path}/mVH {data_file}", "w")
+
+    # ffile = f"{path}/{data_file}"
+    # nseq = len([1 for line in open(ffile) if line.startswith(">")])
+    # print("nseq: ", nseq)
+
+
+    # store the fasta lines into another list
+    idx = 0
+    with open(f"{path}/{data_file}", "r") as f:
+        count = 1
+        for line in f:
+            if count % 2:
+                seq = line
+                count += 1
+            else:
+                seq += line
+                if action[idx] == "mouse":
+                    mouse.write(seq)
+                elif action[idx] == "human":
+                    human.write(seq)
+                idx += 1
+                count += 1
+
+    human.close()
+    mouse.close()
+
 #Calling the function
-#splitFasta('/Users/amandazhang/Downloads/igblast-master/Final Sequences/type_of_seq.csv', "/Users/amandazhang/Downloads/igblast-master/Final Sequences/G3 CE137", "IgG23-ABSM1-37 copy.fasta")
-splitFasta(sys.argv[1], sys.argv[2], sys.argv[3])
+def main():
+    #splitFasta('/Users/amandazhang/Downloads/igblast-master/Final Sequences/type_of_seq.csv', "/Users/amandazhang/Downloads/igblast-master/Final Sequences/G3 CE137", "IgG23-ABSM1-37 copy.fasta")
+    splitFastaCSV(sys.argv[1], sys.argv[2], sys.argv[3])
+
+if __name__=="__main__": 
+    main() 
