@@ -9,6 +9,15 @@ This project aims to classify FASTA sequences into either human or mouse categor
 
 ### Usage
 Navigate to correct directory in terminal
+
+#### seperate.py
+``` python3 seperate.py path file_name ```
+path = path to input fasta file's folder/directory
+file_name = name of the file
+
+This code runs the entire program on the inputted fasta file to parse through every sequence and determine if it is a human or mouse sequence. The output of this code is two fasta files, KI and mVH, which contains only human and only mouse sequences from the original file respectively. 
+
+
 #### human.py and mouse.py:
 ```
 python3 human.py query path
