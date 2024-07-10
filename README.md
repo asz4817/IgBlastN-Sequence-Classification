@@ -11,7 +11,9 @@ This project aims to classify FASTA sequences into either human or mouse categor
 Navigate to correct directory in terminal
 
 #### seperate.py
-``` python3 seperate.py path file_name ```
+``` 
+python3 seperate.py path file_name
+```
 path = path to input fasta file's folder/directory
 file_name = name of the file
 
@@ -19,7 +21,9 @@ This code runs the entire program on the inputted fasta file to parse through ev
 
 
 #### fastqToFasta:
-```python3 fastqToFasta.py path file_name ```
+```
+python3 fastqToFasta.py path file_name
+```
 path = path to the folder of the fastq file
 file_name = name of the fastq file
 
