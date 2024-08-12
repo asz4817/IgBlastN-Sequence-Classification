@@ -11,7 +11,7 @@ This code runs the entire program on the inputted fasta file to parse through ev
 
 #### human.py and mouse.py:
 These codes will return a human_identities.csv or mouse_identities.csv, which you can then analyze in Excel. 
-Pull the resulting list of identities you determin in Excel to a seperate csv to use in the next Python file. 
+Pull the resulting list of identities you determine in Excel to a seperate csv to use in the next Python file. 
 
 
 #### splitFasta.py:
