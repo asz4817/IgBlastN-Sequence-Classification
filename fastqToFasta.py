@@ -1,10 +1,6 @@
+'''Program to convert sequences written in fastq format to fasta'''
+
 from Bio import SeqIO
-
-# with open("test.fastq") as handle:
-#     for record in SeqIO.parse(handle, "fastq"):
-#         print(record.seq)
-#         print()
-
 
 with open("test.fastq") as input_handle:
     with open("results.fasta", "w") as output:
