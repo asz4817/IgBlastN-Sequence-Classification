@@ -9,7 +9,10 @@ def removeN(file):
     :param file:  string, file path to the working directory
     :return: None
     '''
-    n = open(f"{file[:78]}-N {file[79:]}", "w")
+    if "V" in file:
+        n=open(f"{file[:79]}-N {file[80:-10]}.fasta", "w")
+    else:
+        n = open(f"{file[:78]}-N {file[79:-10]}.fasta", "w")
 
     count = 0
     length = 0

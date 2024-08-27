@@ -17,6 +17,9 @@ def determineOrganism(query, path="/Users/amandazhang/Downloads/igblast-master")
     humans = humans.iloc[:, 0].values
     mouses = mouses.iloc[:, 0].values
 
+    print("human length:", len(humans))
+    print("mouse length:", len(mouses))
+
     type_of_seq = []
     for idx, hIdentity in enumerate(humans):
         if mouses[idx] > hIdentity and mouses[idx] > 85:

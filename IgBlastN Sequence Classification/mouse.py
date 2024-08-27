@@ -49,6 +49,8 @@ def blastn_get_top_hits_mouse(query, path="/Users/amandazhang/Downloads/igblast-
         print("Done parsing")
         # Convert data list into DataFrame        
         df = pd.DataFrame.from_dict(hits, orient='index', columns = ["% Identity"])
+        df.to_csv("mouse.csv")
+        print("mouse:", len(df))
         return df
     
 
